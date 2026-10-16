@@ -116,4 +116,22 @@ class AuditEventControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(header().string(CorrelatorFilter.HEADER, "my-correlator"));
     }
+
+    // ── Request errors ────────────────────────────────────────────────────────
+
+    @Test
+    @WithMockUser
+    void shouldReturn400WhenTheIdIsNotAUuid() throws Exception {
+        mockMvc.perform(get("/events/{id}", "abc"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400));
+    }
+
+    @Test
+    @WithMockUser
+    void shouldReturn404ForAnUnknownPath() throws Exception {
+        mockMvc.perform(get("/unknown"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.status").value(404));
+    }
 }
