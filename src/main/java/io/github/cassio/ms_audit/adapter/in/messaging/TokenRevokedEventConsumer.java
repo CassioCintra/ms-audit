@@ -1,6 +1,6 @@
 package io.github.cassio.ms_audit.adapter.in.messaging;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import io.github.cassio.ms_audit.adapter.in.messaging.dto.TokenRevokedEventDto;
 import io.github.cassio.ms_audit.application.port.in.SaveAuditEventUseCase;
 import io.github.cassio.ms_audit.domain.audit.AuditEvent;
