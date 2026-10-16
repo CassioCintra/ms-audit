@@ -1,8 +1,6 @@
 package io.github.cassio.ms_audit.adapter.in.messaging;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import tools.jackson.databind.ObjectMapper;
 import io.github.cassio.ms_audit.adapter.in.messaging.dto.UserInvitedEventDto;
 import io.github.cassio.ms_audit.application.port.in.SaveAuditEventUseCase;
 import io.github.cassio.ms_audit.domain.audit.AuditEvent;
@@ -29,9 +27,7 @@ class UserInvitedEventConsumerTest {
     private SaveAuditEventUseCase saveAuditEventUseCase;
 
     @Spy
-    private ObjectMapper objectMapper = new ObjectMapper()
-            .registerModule(new JavaTimeModule())
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @InjectMocks
     private UserInvitedEventConsumer consumer;
