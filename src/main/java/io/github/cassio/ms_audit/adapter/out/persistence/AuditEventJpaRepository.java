@@ -18,8 +18,8 @@ public interface AuditEventJpaRepository extends JpaRepository<AuditEventEntity,
               AND (:action IS NULL OR e.action = :action)
               AND (:actorId IS NULL OR e.actorId = :actorId)
               AND (:resourceId IS NULL OR e.resourceId = :resourceId)
-              AND (:from IS NULL OR e.occurredAt >= :from)
-              AND (:to IS NULL OR e.occurredAt <= :to)
+              AND (CAST(:from AS Instant) IS NULL OR e.occurredAt >= :from)
+              AND (CAST(:to AS Instant) IS NULL OR e.occurredAt <= :to)
             ORDER BY e.occurredAt DESC
             """)
     Page<AuditEventEntity> findWithFilters(
